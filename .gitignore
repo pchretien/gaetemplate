@@ -1,0 +1,17 @@
+#Generated stuff
+*.class
+bin/
+obj/
+target/
+log/
+Thumbs.db
+
+#Put all the stuff you don't want in the repo here (doc, APIs, temp files ...)
+/misc
+
+#Eclipse specific stuff
+.classpath
+.project
+.metadata/
+.settings/
+

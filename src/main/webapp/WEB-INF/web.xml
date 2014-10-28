@@ -15,4 +15,18 @@
         <servlet-name>Jersey Web Application</servlet-name>
         <url-pattern>/webresources/*</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+		<servlet-name>GAETemplate</servlet-name>
+		<servlet-class>com.basbrun.gae.GaeTemplateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GAETemplate</servlet-name>
+		<url-pattern>/gaetemplate</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	
 </web-app>

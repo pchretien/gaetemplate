@@ -4,6 +4,7 @@ bin/
 obj/
 target/
 log/
+war/
 Thumbs.db
 
 #Put all the stuff you don't want in the repo here (doc, APIs, temp files ...)

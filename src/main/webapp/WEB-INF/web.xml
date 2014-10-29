@@ -1,32 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- This web.xml file is not required when using Servlet 3.0 container, 
      see implementation details http://jersey.java.net/nonav/documentation/latest/jax-rs.html#d4e194 -->
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-    <servlet>
-        <servlet-name>Jersey Web Application</servlet-name>
-        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
-        <init-param>
-            <param-name>com.sun.jersey.config.property.packages</param-name>
-            <param-value>com.basbrun.gae.jersey</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Jersey Web Application</servlet-name>
-        <url-pattern>/jersey/*</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-		<servlet-name>GAETemplate</servlet-name>
-		<servlet-class>com.basbrun.gae.servlets.GaeTemplateServlet</servlet-class>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+	<welcome-file-list>
+	  <welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	
+	<!-- Jersey generator / parser -->
+	<servlet>
+	  <servlet-name>Jersey Web Application</servlet-name>
+	  <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+	  <init-param>
+	    <param-name>com.sun.jersey.config.property.packages</param-name>
+	    <param-value>com.basbrun.gae.jersey</param-value>
+	  </init-param>
+	  <load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>GAETemplate</servlet-name>
-		<url-pattern>/gaetemplate</url-pattern>
+	  <servlet-name>Jersey Web Application</servlet-name>
+	  <url-pattern>/jersey/*</url-pattern>
 	</servlet-mapping>
 	
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-	</welcome-file-list>
+	<!-- Demo GAE servlet -->
+	<servlet>
+	  <servlet-name>GAETemplate</servlet-name>
+	  <servlet-class>com.basbrun.gae.servlets.GaeTemplateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>GAETemplate</servlet-name>
+	  <url-pattern>/gaetemplate</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Sending mails servlet -->
+	<servlet>
+	  <description></description>
+	  <display-name>OutMailHandler</display-name>
+	  <servlet-name>OutMailHandler</servlet-name>
+	  <servlet-class>com.basbrun.gae.servlets.OutMailHandler</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>OutMailHandler</servlet-name>
+	  <url-pattern>/outmailhandler</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Receiving mails handler servlet -->
+	<servlet>
+	  <description></description>
+	  <display-name>InMailHandler</display-name>
+	  <servlet-name>InMailHandler</servlet-name>
+	  <servlet-class>com.basbrun.gae.servlets.InMailHandler</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>InMailHandler</servlet-name>
+	  <url-pattern>/_ah/mail/*</url-pattern>
+	</servlet-mapping>
+  
+ 	
+	<security-constraint>
+	  <web-resource-collection>
+	    <web-resource-name>mail</web-resource-name>
+	    <url-pattern>/_ah/mail/*</url-pattern>
+	  </web-resource-collection>
+	  <auth-constraint>
+	    <role-name>admin</role-name>
+	  </auth-constraint>
+	</security-constraint>
 	
 </web-app>

@@ -4,7 +4,7 @@ public class Logger
 {
 	private java.util.logging.Logger logger = null;
 	
-	public Logger(Class type)
+	public Logger(Class<?> type)
 	{
 		logger = java.util.logging.Logger.getLogger(type.getName());
 	}

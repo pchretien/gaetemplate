@@ -1,18 +1,17 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
-<!-- above set at the top of the file will set     -->
-<!-- the browser's rendering engine into           -->
-<!-- "Quirks Mode". Replacing this declaration     -->
-<!-- with a "Standards Mode" doctype is supported, -->
-<!-- but may lead to some differences in layout.   -->
+<!doctype html>
+	<%@include file='partials/taglib.jsp'%>
 
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Hello App Engine</title>
+    
+    <jsp:include page="partials/head.jsp" flush="true"/> 
   </head>
 
   <body>
+  <jsp:include page="partials/menu.jsp" flush="true"/> 
+
     <h1>Hello App Engine!</h1>
 	
     <table>
@@ -35,5 +34,7 @@
         <td><a href="outmailhandler">Send Mail</a></td>
       </tr>
     </table>
+    
+  <jsp:include page="partials/libs.jsp" flush="true"/> 
   </body>
 </html>

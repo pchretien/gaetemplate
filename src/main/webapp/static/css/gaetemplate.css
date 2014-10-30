@@ -1,0 +1,154 @@
+body {
+/*  min-height: 2000px;*/
+  padding-top: 70px;
+}
+
+
+hr {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 0;
+	border-top: 1px solid #eee;
+}
+
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+}
+
+.mm-title
+{
+	font-size: 21px;
+	font-weight: bold;
+}
+
+/* fix for angular */
+.modal {
+    display: block;
+}
+.modal-body:before,
+.modal-body:after {
+    display: table;
+    content: " ";
+}
+.modal-header:before,
+.modal-header:after {
+    display: table;
+    content: " ";
+}
+
+#weekWorkloadTable .mm-workload-cell.hover
+{
+	cursor:pointer;
+	background-color:lightblue;
+	border-color: #66afe9;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+	
+}
+
+#weekWorkloadTable .mm-workload-cell.focus 
+{
+	background-color:lightblue;
+	outline: thin dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
+}
+
+#weekWorkloadTable .mm-workload-cell
+{
+	background-color:white;
+	height:60px;
+	border:solid 1px black;
+	position:relative
+}
+
+.mm-search-clear {
+    position: absolute;
+    right: 60px;
+    top: -15px;
+    bottom: 0;
+    height: 14px;
+    margin: auto;
+    font-size: 14px;
+    cursor: pointer;
+    color: #ccc;
+    z-index: 2;
+}
+
+
+@media (min-width: 768px) {
+
+}
+@media (min-width: 992px) {
+	.mm-col-left
+	{
+		padding-right:20px;		
+	}
+	
+	.mm-col-right
+	{
+		padding-left:20px;		
+	}
+	
+	.mm-timesheet-table
+	{
+		padding-left:10px;
+		padding-right:10px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.mm-col-left
+	{
+		padding-right:30px;		
+	}
+	
+	.mm-col-right
+	{
+		padding-left:30px;		
+	}
+	
+	.mm-timesheet-table
+	{
+		padding-left:10px;
+		padding-right:10px;
+	}
+}
+
+.mm-timesheet-subtotal
+{
+	font-size:12px;
+	font-weight: bold;
+	background-color: #f9f9f9;
+	
+	border-top:solid 2px darkgray;
+	
+}
+.mm-table-time
+{
+	
+	width:200px;
+}
+
+.mm-table-tool
+{
+	
+	width:45px;
+}
+
+
+.form-group .help-block {
+  display: none;
+}
+
+.form-group.has-error .help-block {
+  display: block;
+}
+
+.mm-button-container
+{
+	padding-bottom: 20px;
+}

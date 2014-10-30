@@ -7,6 +7,7 @@
     <title>Hello App Engine</title>
     
     <jsp:include page="partials/head.jsp" flush="true"/> 
+    <jsp:include page="partials/libs.jsp" flush="true"/> 
   </head>
 
   <body>

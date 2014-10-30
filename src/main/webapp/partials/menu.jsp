@@ -1,5 +1,8 @@
 <%@include file='taglib.jsp'%>
 
+<script>
+	loadFacebookAPI();
+</script>
 	<!-- Fixed navbar -->
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container">
@@ -9,7 +12,7 @@
 					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> 
 					<span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html"><img src="static/img/mobilman_logotype_bleu.png" height="50px" style="display:inline;margin-top:-16px"/></a>
+				<a class="navbar-brand" href="index.html"><img src="static/img/logo.png" height="50px" style="display:inline;margin-top:-16px"/></a>
 			</div>
 			<sec:authorize var="loggedIn" access="isAuthenticated()" />
 			

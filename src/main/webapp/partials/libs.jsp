@@ -13,4 +13,6 @@
 <script src="static/js/lib/jquery.numeric.js"></script>
 
 <!-- Open Layers -->
+<script src="static/js/utils.js"></script>
 <script src="static/js/maplocator.js"></script>
+

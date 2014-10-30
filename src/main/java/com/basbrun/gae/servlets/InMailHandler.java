@@ -2,6 +2,7 @@ package com.basbrun.gae.servlets;
 
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.mail.BodyPart;
 import javax.mail.MessagingException;
@@ -20,6 +21,7 @@ import com.google.appengine.api.mail.MailService.Message;
 public class InMailHandler extends HttpServlet
 {
 	private static final long serialVersionUID = -1169649708461956431L;
+	private final static Logger logger = Logger.getLogger(InMailHandler.class.getName());
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -30,7 +32,7 @@ public class InMailHandler extends HttpServlet
         
         try
 		{
-        	// 
+        	// Retreive the MimeMessage from the HTTP Post
 			MimeMessage messageIn = new MimeMessage(session, req.getInputStream());
 			
 			String from = messageIn.getHeader("From", null);
@@ -39,6 +41,8 @@ public class InMailHandler extends HttpServlet
 			Multipart multipart = (Multipart) messageIn.getContent();
 		    String body = (multipart.getCount()>0)?multipart.getBodyPart(0).getContent().toString():null;
 		    
+		    logger.info("Received email from (" + from + ") with subject (" + subject + ") and body (" + body.substring(0, 30) + ")");
+		    
 			Message messageOut = new Message();
 			messageOut.setTo(from);
 			messageOut.setSender("basbrun.com<philippe.chretien@gmail.com>");			
@@ -46,6 +50,8 @@ public class InMailHandler extends HttpServlet
 			messageOut.setTextBody(from + "|" + subject +"|" + body + "\nYou sent:\n" + body);			
 			MailService mailService = MailServiceFactory.getMailService();
 			mailService.send(messageOut);
+			
+			
 		}
 		catch (MessagingException e)
 		{

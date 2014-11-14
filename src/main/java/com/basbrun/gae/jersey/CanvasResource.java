@@ -4,6 +4,7 @@ package com.basbrun.gae.jersey;
 import java.io.IOException;
 import java.util.Properties;
 
+import javax.activation.DataHandler;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -14,6 +15,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.mail.util.ByteArrayDataSource;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import javax.xml.bind.DatatypeConverter;
@@ -50,7 +52,7 @@ public class CanvasResource
 		Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);
 
-        String msgBody = "Your image <a href=\"http://basbrun-hrd.appspot.com/canvasservlet?key="+id+"\">"+id+"</a>";
+        String msgBody = "Your image <a href=\"http://basbrun-hrd.appspot.com/canvasservlet?key="+id+"\">"+id+"</a><br><img src=\"cid:"+id+"\">";
 
         try 
         {
@@ -60,16 +62,18 @@ public class CanvasResource
 			msg.setSubject("You got a drawing from ...");
 			
 			//msg.setText(msgBody);
-			Multipart mp = new MimeMultipart();
+			Multipart mp = new MimeMultipart("related");
 
 	        MimeBodyPart htmlPart = new MimeBodyPart();
 	        htmlPart.setContent(msgBody, "text/html");
 	        mp.addBodyPart(htmlPart);
 
-//	        MimeBodyPart attachment = new MimeBodyPart();
-//	        attachment.setFileName(id+".png");
-//	        attachment.setContent(dataOut, "image/png");
-//	        mp.addBodyPart(attachment);
+	        MimeBodyPart imagePart = new MimeBodyPart();
+	        imagePart.setDataHandler(new DataHandler(new ByteArrayDataSource(dataOut, "image/png")));
+	        imagePart.setFileName(id + ".png");
+	        imagePart.setHeader("Content-Type", "image/png");
+	        imagePart.addHeader("Content-ID", "<" + id + ">");
+	        mp.addBodyPart(imagePart);
 			
 	        msg.setContent(mp);
 			Transport.send(msg);

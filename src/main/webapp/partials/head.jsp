@@ -6,6 +6,7 @@
 	<link href="static/css/autocomplete.css" rel="stylesheet">
 	<link href="static/css/gaetemplate.css" rel="stylesheet">
 	<link href="static/css/maplocator.css" rel="stylesheet">
+	
 	<link href="http://openlayers.org/en/v3.0.0/css/ol.css" rel="stylesheet">
 	
 

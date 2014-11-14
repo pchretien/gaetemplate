@@ -55,6 +55,18 @@
 	  <servlet-name>InMailHandler</servlet-name>
 	  <url-pattern>/_ah/mail/*</url-pattern>
 	</servlet-mapping>
+	
+	<!-- Display Drawing -->
+	<servlet>
+	  <description></description>
+	  <display-name>CanvasServlet</display-name>
+	  <servlet-name>CanvasServlet</servlet-name>
+	  <servlet-class>com.basbrun.gae.servlets.CanvasServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>CanvasServlet</servlet-name>
+	  <url-pattern>/canvasservlet</url-pattern>
+	</servlet-mapping>
   
  	
 	<security-constraint>

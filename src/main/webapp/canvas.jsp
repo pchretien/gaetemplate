@@ -8,37 +8,70 @@
 	
 	<jsp:include page="partials/libs.jsp" flush="true"/> 
 	<link href="static/css/canvas.css" rel="stylesheet"> 
+	
+	<link href="static/css/drawingboard.css" rel="stylesheet">
+	
+	<script src="static/js/drawingboard.js"></script>
+	<script src="static/js/board.js"></script>
+	<script src="static/js/controls/control.js"></script>
+	<script src="static/js/controls/color.js"></script>
+	<script src="static/js/controls/drawingmode.js"></script>
+	<script src="static/js/controls/navigation.js"></script>
+	<script src="static/js/controls/size.js"></script>
+	<script src="static/js/controls/download.js"></script>
+	<script src="static/js/utils.js"></script>
+	
+	<style>
+		/*
+		* drawingboards styles: set the board dimensions you want with CSS
+		*/
+
+		.board {
+			margin: 0 auto;
+			width: 300px;
+			height: 300px;
+		}
+
+		#default-board {
+			width: 700px;
+			height: 400px;
+		}
+
+		#custom-board-2 {
+			width: 550px;
+			height: 300px;
+		}
+
+		#title-board {
+			width: 600px;
+			height: 270px;
+		}
+		/* custom board styles for the title? no problem*/
+		#title-board .drawing-board-canvas-wrapper {
+			border: none;
+			margin: 0;
+		}
+		</style>
 </head>
 <body>
-	<canvas id="c" width="500" height="300"></canvas><br>
-	<button id="send">Send me a drawing</button>
+	<div class="example" data-example="1">
+		<div id="default-board"></div><br>
+		<button id="send">Send me a drawing ...</button>
+	</div>
+	
+	<script data-example="1">
+		//create the drawingboard by passing it the #id of the wanted container
+		var defaultBoard = new DrawingBoard.Board('default-board');
+	</script>
 
-	<script>
-		var el = document.getElementById('c');
-		var ctx = el.getContext('2d');
-		var isDrawing;
-		
-		el.onmousedown = function(e) {
-		  isDrawing = true;
-		  ctx.moveTo(e.clientX, e.clientY);
-		};
-		
-		el.onmousemove = function(e) {
-		  if (isDrawing) {
-		    ctx.lineTo(e.clientX, e.clientY);
-		    ctx.stroke();
-		  }
-		};
-		
-		el.onmouseup = function() {
-		  isDrawing = false;
-		};
-		
+	<script>		
+	
 		$('#send').click(sendDrawing);
 		
 		function sendDrawing()
 		{
-			var canvasData = $('#c')[0].toDataURL("image/png");
+			//var canvasData = $('#c')[0].toDataURL("image/png");
+			var canvasData = $('.drawing-board-canvas')[0].toDataURL("image/png");
 
 			$.ajax({
 				type: "POST",

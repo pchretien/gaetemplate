@@ -34,10 +34,11 @@ public class CanvasResource
 {   
 	private static Logger logger = new Logger(CanvasResource.class);
 	
-	@POST
+	@PUT
+	@Path("/{userid}")
  	@Consumes({ MediaType.APPLICATION_JSON})
     @Produces({ MediaType.APPLICATION_JSON})
- 	public CanvasData addDrawing(String canvasAsPng) throws IOException 
+ 	public CanvasData addDrawing(@PathParam("userid") int userid, String canvasAsPng) throws IOException 
 	{
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		Entity drawing = new Entity("Drawing");
@@ -54,11 +55,14 @@ public class CanvasResource
 
         String msgBody = "Your image <a href=\"http://basbrun-hrd.appspot.com/canvasservlet?key="+id+"\">"+id+"</a><br><img src=\"cid:"+id+"\">";
 
+        String to = "philippechretien@hotmail.com";
+        if(userid == 2)
+        	to = "hello@gabriellematte.ca";
         try 
         {
 			Message msg = new MimeMessage(session);
 			msg.setFrom(new InternetAddress("philippe.chretien@gmail.com", "Drawing - basbrun.com"));
-			msg.addRecipient(Message.RecipientType.TO, new InternetAddress("philippechretien@hotmail.com", "Philippe"));
+			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to, to));
 			msg.setSubject("You got a drawing from ...");
 			
 			//msg.setText(msgBody);

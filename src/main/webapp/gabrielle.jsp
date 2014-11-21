@@ -56,7 +56,7 @@
 <body>
 	<div class="example" data-example="1">
 		<div id="default-board"></div><br>
-		<button id="send">Send me a drawing ...</button>
+		<button id="send">Envoyez votre dessin à Gabrielle ... :)</button>
 	</div>
 	
 	<script data-example="1">
@@ -76,7 +76,7 @@
 			$.ajax({
 				type: "PUT",
 				cache:false,
-				url: encodeURI("jersey/canvas/1"),
+				url: encodeURI("jersey/canvas/2"),
 				contentType: "application/json; charset=utf-8",
 				dataType: "json",
 				data: canvasData,
